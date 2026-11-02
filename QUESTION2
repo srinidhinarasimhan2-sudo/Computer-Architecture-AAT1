@@ -1,0 +1,26 @@
+cache_lines = 8
+cache = [None] * cache_lines
+blocks = [3, 11, 3, 19, 11, 27, 3]
+
+hits = 0
+misses = 0
+
+for block in blocks:
+    line = block % cache_lines
+
+    print("\nMemory Block:", block)
+    print("Cache Line:", line)
+
+    if cache[line] == block:
+        print("HIT")
+        hits += 1
+    else:
+        print("MISS")
+        misses += 1
+        cache[line] = block
+
+    print("Cache Contents:", cache)
+
+print("\nTotal Hits:", hits)
+print("Total Misses:", misses)
+print("Hit Ratio:", round(hits / len(blocks), 4))
